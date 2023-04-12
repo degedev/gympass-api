@@ -6,3 +6,41 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  created_at    DateTime @default(now())
+
+  checkIns CheckIns[]
+
+  @@map("users")
+}
+
+model CheckIns {
+  id           String    @id @default(uuid())
+  created_at   DateTime  @default(now())
+  validated_at DateTime?
+
+  user    Users  @relation(fields: [user_id], references: [id])
+  gym     Gyms   @relation(fields: [gym_id], references: [id])
+  user_id String
+  gym_id  String
+
+  @@map("check_ins")
+}
+
+model Gyms {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  phone       String?
+  latitude    Decimal
+  longitude   Decimal
+
+  checkIns CheckIns[]
+
+  @@map("gyms")
+}
