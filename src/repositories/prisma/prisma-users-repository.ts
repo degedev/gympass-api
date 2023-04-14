@@ -1,7 +1,7 @@
 import { IRegisterUserDTO } from '@/dtos/IRegisterUserDTO'
 import { prisma } from '@/lib/prisma'
 import { Users } from '@prisma/client'
-import { UsersRepository } from '../usersRepository'
+import { UsersRepository } from '../users-repository'
 
 export class PrismaUsersRepository implements UsersRepository {
   async create({ name, email, password }: IRegisterUserDTO): Promise<Users> {

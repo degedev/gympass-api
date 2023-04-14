@@ -1,8 +1,8 @@
 import { IRegisterUserDTO } from '@/dtos/IRegisterUserDTO'
 
-import { UsersRepository } from '@/repositories/usersRepository'
 import { hash } from 'bcryptjs'
-import { UserAlreadyExistsError } from './errors/userAlreadyExistsError'
+import { UserAlreadyExistsError } from './errors/user-already-exists-error'
+import { UsersRepository } from '@/repositories/users-repository'
 
 export class RegisterUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
