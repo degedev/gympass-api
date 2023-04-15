@@ -1,15 +1,18 @@
-import { IRegisterUserDTO } from '@/dtos/IRegisterUserDTO'
 import { prisma } from '@/lib/prisma'
-import { Users } from '@prisma/client'
+import { Prisma, Users } from '@prisma/client'
 import { UsersRepository } from '../users-repository'
 
 export class PrismaUsersRepository implements UsersRepository {
-  async create({ name, email, password }: IRegisterUserDTO): Promise<Users> {
+  async create({
+    name,
+    email,
+    password_hash,
+  }: Prisma.UsersCreateInput): Promise<Users> {
     const user = await prisma.users.create({
       data: {
         name,
         email,
-        password_hash: password,
+        password_hash,
       },
     })
 

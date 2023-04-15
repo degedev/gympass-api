@@ -1,7 +1,10 @@
-import { IRegisterUserDTO } from '@/dtos/IRegisterUserDTO'
-import { Users } from '@prisma/client'
+import { Prisma, Users } from '@prisma/client'
 
 export interface UsersRepository {
-  create({ name, email, password }: IRegisterUserDTO): Promise<Users>
+  create({
+    name,
+    email,
+    password_hash,
+  }: Prisma.UsersCreateInput): Promise<Users>
   findByEmail(email: string): Promise<Users | null>
 }
