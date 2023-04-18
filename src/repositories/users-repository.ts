@@ -7,4 +7,5 @@ export interface UsersRepository {
     password_hash,
   }: Prisma.UsersCreateInput): Promise<Users>
   findByEmail(email: string): Promise<Users | null>
+  findById(id: string): Promise<Users | null>
 }
