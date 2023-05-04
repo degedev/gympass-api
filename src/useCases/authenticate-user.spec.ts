@@ -3,9 +3,8 @@ import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-user
 import { AuthenticateUserUseCase } from './authenticate-user'
 import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
-import { UsersRepository } from '@/repositories/users-repository'
 
-let usersRepository: UsersRepository
+let usersRepository: InMemoryUsersRepository
 let sut: AuthenticateUserUseCase
 
 describe('[Register User Use Case]', () => {
